@@ -24,3 +24,13 @@ export function addPost(post: {title: string, text: string}, db = connection): P
       return getPost(id[0])
     })
 }
+
+export function updatePost(id: number, updatedPost: {title: string, text: string}, db = connection) {
+  return db('posts')
+    .where('id', id)
+    .update(updatedPost)
+    // update the post then get the newly updated post
+    .then(() => {
+      return getPost(id)
+    })
+}
