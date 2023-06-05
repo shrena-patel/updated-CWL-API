@@ -63,8 +63,4 @@ router.post('/:postId/comments', (req, res) => {
       .catch((err) => res.status(500).json(err.message))
 })
 
-
-
-
-
 export default router

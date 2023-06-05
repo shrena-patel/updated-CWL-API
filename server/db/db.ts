@@ -1,13 +1,14 @@
 import { Post } from '../../models/post';
 import connection from './connection'
 
-export function getAllPosts(db = connection): Promise<Post[]> {
-  return db('posts').select(
+export async function getAllPosts(db = connection) {
+  const posts = await db('posts').select(
     'id',
     'title',
     'date_created as dateCreated',
     'text'
-   )
+   ) 
+   return posts as Post[]
 }
 
 export function getPost(id: number, db = connection): Promise<Post> {
